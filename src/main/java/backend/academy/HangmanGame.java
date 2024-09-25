@@ -53,6 +53,7 @@ public class HangmanGame {
      * Основной метод для запуска игры.
      * @param args Аргументы командной строки
      */
+    @SuppressWarnings("checkstyle:UncommentedMain")
     public static void main(String[] args) {
         HangmanGame game = new HangmanGame("path/to/your/words.txt");
         game.play();
