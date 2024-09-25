@@ -14,6 +14,7 @@ public class WordManager {
     private final String filePath;
     private final List<String> categories = new ArrayList<>();
     private final PrintStream out;
+    private static final String WHITESPACE_REGEX = "\\s+";
 
     public WordManager(String filePath) {
         this.filePath = filePath;
@@ -25,7 +26,7 @@ public class WordManager {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split("\\s+");
+                String[] parts = line.split(WHITESPACE_REGEX);
                 if (parts.length > 0) {
                     categories.add(parts[0]);
                 }
@@ -69,7 +70,7 @@ public class WordManager {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split("\\s+");
+                String[] parts = line.split(WHITESPACE_REGEX);
                 if (parts[0].equalsIgnoreCase(category)) {
                     words.addAll(Arrays.asList(Arrays.copyOfRange(parts, 1, parts.length)));
                     break;

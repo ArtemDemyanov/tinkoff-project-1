@@ -49,6 +49,9 @@ public class HangmanGame {
         scanner.close();
     }
 
+    /**
+     * Основной метод для запуска игры.
+     */
     public static void main(String[] args) {
         HangmanGame game = new HangmanGame("path/to/your/words.txt");
         game.play();

@@ -13,6 +13,7 @@ public class GameState {
     private final Set<Character> wrongLetters = new HashSet<>();
     private final int maxAttempts;
     private final PrintStream out;
+    private static final int STAGE_COUNT = 6;
 
     public GameState(String chosenWord, int maxAttempts) {
         if (chosenWord == null || chosenWord.length() < 2) {
@@ -27,21 +28,21 @@ public class GameState {
     }
 
     public void processGuess(char guess) {
-        guess = Character.toLowerCase(guess);
-        if (Character.isWhitespace(guess) || String.valueOf(guess).length() > 1) {
+        char lowerGuess = Character.toLowerCase(guess);
+        if (Character.isWhitespace(lowerGuess) || String.valueOf(lowerGuess).length() > 1) {
             out.println("Введите одну букву.");
             return;
         }
-        if (guessedLetters.contains(guess) || wrongLetters.contains(guess)) {
+        if (guessedLetters.contains(lowerGuess) || wrongLetters.contains(lowerGuess)) {
             out.println("Эта буква уже была угадана.");
             return;
         }
-        guessedLetters.add(guess);
+        guessedLetters.add(lowerGuess);
 
-        if (chosenWord.indexOf(guess) >= 0) {
-            updateGuessedWord(guess);
+        if (chosenWord.indexOf(lowerGuess) >= 0) {
+            updateGuessedWord(lowerGuess);
         } else {
-            wrongLetters.add(guess);
+            wrongLetters.add(lowerGuess);
             attemptsLeft--;
         }
     }
@@ -63,7 +64,7 @@ public class GameState {
     }
 
     public void printHangman() {
-        int stage = (maxAttempts - attemptsLeft) * 6 / maxAttempts;
+        int stage = (maxAttempts - attemptsLeft) * STAGE_COUNT / maxAttempts;
         switch (stage) {
             case 0 -> out.println("""
             +---+

@@ -7,6 +7,9 @@ import java.util.Scanner;
 public class Difficulty {
     private int maxAttempts;
     private final PrintStream out;
+    private static final int EASY_ATTEMPTS = 10;
+    private static final int MEDIUM_ATTEMPTS = 6;
+    private static final int HARD_ATTEMPTS = 4;
 
     public Difficulty(Scanner scanner) {
         this.out = System.out;
@@ -15,9 +18,9 @@ public class Difficulty {
 
     private void chooseDifficulty(Scanner scanner) {
         out.println("Выберите уровень сложности:");
-        out.println("1. Легкий (10 попыток)");
-        out.println("2. Средний (6 попыток)");
-        out.println("3. Сложный (4 попытки)");
+        out.println("1. Легкий (" + EASY_ATTEMPTS + " попыток)");
+        out.println("2. Средний (" + MEDIUM_ATTEMPTS + " попыток)");
+        out.println("3. Сложный (" + HARD_ATTEMPTS + " попытки)");
 
         Random random = new Random();
         String input;
@@ -41,9 +44,9 @@ public class Difficulty {
 
             if (choice >= 1 && choice <= 3) {
                 maxAttempts = switch (choice) {
-                    case 1 -> 10;
-                    case 2 -> 6;
-                    default -> 4;
+                    case 1 -> EASY_ATTEMPTS;
+                    case 2 -> MEDIUM_ATTEMPTS;
+                    default -> HARD_ATTEMPTS;
                 };
                 break;
             } else {
