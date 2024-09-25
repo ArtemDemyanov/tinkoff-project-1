@@ -10,6 +10,7 @@ public class Difficulty {
     private static final int EASY_ATTEMPTS = 10;
     private static final int MEDIUM_ATTEMPTS = 6;
     private static final int HARD_ATTEMPTS = 4;
+    private static final String ATTEMPTS_SUFFIX = " попыток)";
 
     public Difficulty(Scanner scanner) {
         this.out = System.out;
@@ -18,9 +19,9 @@ public class Difficulty {
 
     private void chooseDifficulty(Scanner scanner) {
         out.println("Выберите уровень сложности:");
-        out.println("1. Легкий (" + EASY_ATTEMPTS + " попыток)");
-        out.println("2. Средний (" + MEDIUM_ATTEMPTS + " попыток)");
-        out.println("3. Сложный (" + HARD_ATTEMPTS + " попытки)");
+        out.println("1. Легкий (" + EASY_ATTEMPTS + ATTEMPTS_SUFFIX);
+        out.println("2. Средний (" + MEDIUM_ATTEMPTS + ATTEMPTS_SUFFIX);
+        out.println("3. Сложный (" + HARD_ATTEMPTS + ATTEMPTS_SUFFIX);
 
         Random random = new Random();
         String input;

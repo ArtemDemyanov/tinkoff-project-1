@@ -14,6 +14,10 @@ public class GameState {
     private final int maxAttempts;
     private final PrintStream out;
     private static final int STAGE_COUNT = 6;
+    private static final int MAX_STAGE_3 = 3;
+    private static final int MAX_STAGE_4 = 4;
+    private static final int MAX_STAGE_5 = 5;
+    private static final int MAX_STAGE_6 = 6;
 
     public GameState(String chosenWord, int maxAttempts) {
         if (chosenWord == null || chosenWord.length() < 2) {
@@ -90,7 +94,7 @@ public class GameState {
                 |
                 |
             =========""");
-            case 3 -> out.println("""
+            case MAX_STAGE_3 -> out.println("""
             +---+
             |   |
             O   |
@@ -98,7 +102,7 @@ public class GameState {
                 |
                 |
             =========""");
-            case 4 -> out.println("""
+            case MAX_STAGE_4 -> out.println("""
             +---+
             |   |
             O   |
@@ -106,7 +110,7 @@ public class GameState {
                 |
                 |
             =========""");
-            case 5 -> out.println("""
+            case MAX_STAGE_5 -> out.println("""
             +---+
             |   |
             O   |
@@ -114,7 +118,7 @@ public class GameState {
            /    |
                 |
             =========""");
-            case 6 -> out.println("""
+            case MAX_STAGE_6 -> out.println("""
             +---+
             |   |
             O   |
@@ -122,6 +126,7 @@ public class GameState {
            / \\  |
                 |
             =========""");
+            default -> out.println("Ошибка отображения виселицы.");
         }
     }
 

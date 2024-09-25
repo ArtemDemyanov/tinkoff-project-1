@@ -43,7 +43,8 @@ public class WordManager {
 
         while (true) {
             printCategories();
-            out.println("Введите номер категории (1 - " + categories.size() + ") или нажмите Enter для случайного выбора: ");
+            out.println("Введите номер категории (1 - " + categories.size()
+                + ") или нажмите Enter для случайного выбора: ");
             input = scanner.nextLine();
 
             if (input.isEmpty()) {
