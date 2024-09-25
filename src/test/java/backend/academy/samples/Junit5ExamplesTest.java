@@ -26,12 +26,6 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
-
-/**
- * The most popular Java framework for writing tests.
- * <p>
- * <a href="https://junit.org/junit5/docs/current/user-guide/">Library documentation</a>
- */
 public class Junit5ExamplesTest {
     @Nested
     class ParametrizedTests {
