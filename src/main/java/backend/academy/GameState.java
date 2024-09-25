@@ -35,19 +35,16 @@ public class GameState {
         char lowerGuess = Character.toLowerCase(guess);
         if (Character.isWhitespace(lowerGuess) || String.valueOf(lowerGuess).length() > 1) {
             out.println("Введите одну букву.");
-            return;
-        }
-        if (guessedLetters.contains(lowerGuess) || wrongLetters.contains(lowerGuess)) {
+        } else if (guessedLetters.contains(lowerGuess) || wrongLetters.contains(lowerGuess)) {
             out.println("Эта буква уже была угадана.");
-            return;
-        }
-        guessedLetters.add(lowerGuess);
-
-        if (chosenWord.indexOf(lowerGuess) >= 0) {
-            updateGuessedWord(lowerGuess);
         } else {
-            wrongLetters.add(lowerGuess);
-            attemptsLeft--;
+            guessedLetters.add(lowerGuess);
+            if (chosenWord.indexOf(lowerGuess) >= 0) {
+                updateGuessedWord(lowerGuess);
+            } else {
+                wrongLetters.add(lowerGuess);
+                attemptsLeft--;
+            }
         }
     }
 
