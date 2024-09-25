@@ -1,0 +1,5 @@
+Animals cat dog tiger lion elephant wolf fox bear deer horse snake crocodile goat donkey camel monkey parrot whale shark dolphin
+Fruits apple banana orange pear peach pineapple grape watermelon melon strawberry raspberry blackberry blueberry lemon lime kiwi mango papaya pomegranate apricot
+Professions doctor teacher engineer programmer driver builder seller cook artist musician farmer lawyer dentist vet manager designer journalist mechanic policeman firefighter
+Technology phone computer television laptop fridge stove washing_machine microwave iron vacuum_speaker tablet printer monitor camcorder camera projector mouse keyboard headphones
+Cities Moscow Paris London New_York Tokyo Berlin Rome Madrid Sydney Beijing Shanghai Istanbul Toronto Chicago Mexico_City Athens Barcelona Amsterdam Lisbon Prague
