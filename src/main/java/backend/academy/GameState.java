@@ -1,12 +1,17 @@
 package backend.academy;
-import java.util.*;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public class GameState {
-    private String chosenWord;
-    private char[] guessedWord;
+    private final String chosenWord;
+    private final char[] guessedWord;
     private int attemptsLeft;
-    private Set<Character> guessedLetters = new HashSet<>();
-    private Set<Character> wrongLetters = new HashSet<>();
-    private int maxAttempts;
+    private final Set<Character> guessedLetters = new HashSet<>();
+    private final Set<Character> wrongLetters = new HashSet<>();
+    private final int maxAttempts;
+
     public GameState(String chosenWord, int maxAttempts) {
         if (chosenWord == null || chosenWord.length() < 2) {
             throw new IllegalArgumentException("Слово должно содержать как минимум 2 символа.");
@@ -17,6 +22,7 @@ public class GameState {
         this.maxAttempts = maxAttempts;
         this.attemptsLeft = maxAttempts;
     }
+
     public void processGuess(char guess) {
         guess = Character.toLowerCase(guess);
         if (Character.isWhitespace(guess) || String.valueOf(guess).length() > 1) {
@@ -36,6 +42,7 @@ public class GameState {
             attemptsLeft--;
         }
     }
+
     private void updateGuessedWord(char guess) {
         for (int i = 0; i < chosenWord.length(); i++) {
             if (chosenWord.charAt(i) == guess) {
@@ -43,12 +50,15 @@ public class GameState {
             }
         }
     }
+
     public boolean isGameOver() {
         return attemptsLeft <= 0 || isWordGuessed();
     }
+
     public boolean isWordGuessed() {
         return Arrays.equals(guessedWord, chosenWord.toCharArray());
     }
+
     public void printHangman() {
         int stage = (maxAttempts - attemptsLeft) * 6 / maxAttempts;
         switch (stage) {
@@ -110,21 +120,27 @@ public class GameState {
             =========""");
         }
     }
+
     public void printWordState() {
         System.out.println("Слово: " + String.valueOf(guessedWord));
     }
+
     public int getAttemptsLeft() {
         return attemptsLeft;
     }
+
     public Set<Character> getGuessedLetters() {
         return guessedLetters;
     }
+
     public char[] getGuessedWord() {
         return guessedWord;
     }
+
     public Set<Character> getWrongLetters() {
-        return guessedLetters;
+        return wrongLetters;
     }
+
     public void printResult() {
         if (isWordGuessed()) {
             System.out.println("Поздравляем! Вы угадали слово: " + chosenWord);

@@ -22,3 +22,10 @@ dependency-reduced-pom.xml
 ### log files ###
 *.log
 hs_err_pid*
+
+.DS_Store
+src/.DS_Store
+src/main/.DS_Store
+src/main/java/.DS_Store
+src/main/java/backend/.DS_Store
+src/main/java/backend/academy/.DS_Store
