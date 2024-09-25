@@ -1,14 +1,23 @@
 package backend.academy;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class WordManager {
     private final String filePath;
     private final List<String> categories = new ArrayList<>();
+    private final PrintStream out;
 
     public WordManager(String filePath) {
         this.filePath = filePath;
+        this.out = System.out;
         loadCategories();
     }
 
@@ -22,7 +31,7 @@ public class WordManager {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Ошибка при чтении категорий из файла: " + e.getMessage());
+            out.println("Ошибка при чтении категорий из файла: " + e.getMessage());
         }
     }
 
@@ -33,12 +42,12 @@ public class WordManager {
 
         while (true) {
             printCategories();
-            System.out.println("Введите номер категории (1 - " + categories.size() + ") или нажмите Enter для случайного выбора: ");
+            out.println("Введите номер категории (1 - " + categories.size() + ") или нажмите Enter для случайного выбора: ");
             input = scanner.nextLine();
 
             if (input.isEmpty()) {
                 int randomIndex = random.nextInt(categories.size());
-                System.out.println("Случайно выбрана категория: " + categories.get(randomIndex));
+                out.println("Случайно выбрана категория: " + categories.get(randomIndex));
                 return categories.get(randomIndex);
             }
 
@@ -47,10 +56,10 @@ public class WordManager {
                 if (choice >= 1 && choice <= categories.size()) {
                     return categories.get(choice - 1);
                 } else {
-                    System.out.println("Пожалуйста, введите число от 1 до " + categories.size() + ".");
+                    out.println("Пожалуйста, введите число от 1 до " + categories.size() + ".");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Неверный ввод. Пожалуйста, введите число.");
+                out.println("Неверный ввод. Пожалуйста, введите число.");
             }
         }
     }
@@ -67,7 +76,7 @@ public class WordManager {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Ошибка при чтении файла: " + e.getMessage());
+            out.println("Ошибка при чтении файла: " + e.getMessage());
         }
         if (!words.isEmpty()) {
             Random random = new Random();
@@ -77,9 +86,9 @@ public class WordManager {
     }
 
     private void printCategories() {
-        System.out.println("Доступные категории:");
+        out.println("Доступные категории:");
         for (int i = 0; i < categories.size(); i++) {
-            System.out.println((i + 1) + ". " + categories.get(i));
+            out.println((i + 1) + ". " + categories.get(i));
         }
     }
 }

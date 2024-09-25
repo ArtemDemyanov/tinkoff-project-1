@@ -1,5 +1,6 @@
 package backend.academy;
 
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +12,7 @@ public class GameState {
     private final Set<Character> guessedLetters = new HashSet<>();
     private final Set<Character> wrongLetters = new HashSet<>();
     private final int maxAttempts;
+    private final PrintStream out;
 
     public GameState(String chosenWord, int maxAttempts) {
         if (chosenWord == null || chosenWord.length() < 2) {
@@ -21,16 +23,17 @@ public class GameState {
         Arrays.fill(guessedWord, '_');
         this.maxAttempts = maxAttempts;
         this.attemptsLeft = maxAttempts;
+        this.out = System.out;
     }
 
     public void processGuess(char guess) {
         guess = Character.toLowerCase(guess);
         if (Character.isWhitespace(guess) || String.valueOf(guess).length() > 1) {
-            System.out.println("Введите одну букву.");
+            out.println("Введите одну букву.");
             return;
         }
         if (guessedLetters.contains(guess) || wrongLetters.contains(guess)) {
-            System.out.println("Эта буква уже была угадана.");
+            out.println("Эта буква уже была угадана.");
             return;
         }
         guessedLetters.add(guess);
@@ -62,7 +65,7 @@ public class GameState {
     public void printHangman() {
         int stage = (maxAttempts - attemptsLeft) * 6 / maxAttempts;
         switch (stage) {
-            case 0 -> System.out.println("""
+            case 0 -> out.println("""
             +---+
             |   |
                 |
@@ -70,23 +73,23 @@ public class GameState {
                 |
                 |
             =========""");
-            case 1 -> System.out.println("""
-            +---+
-            |   |
-            O   |
-                |
-                |
-                |
-            =========""");
-            case 2 -> System.out.println("""
+            case 1 -> out.println("""
             +---+
             |   |
             O   |
+                |
+                |
+                |
+            =========""");
+            case 2 -> out.println("""
+            +---+
+            |   |
+            O   |
             |   |
                 |
                 |
             =========""");
-            case 3 -> System.out.println("""
+            case 3 -> out.println("""
             +---+
             |   |
             O   |
@@ -94,7 +97,7 @@ public class GameState {
                 |
                 |
             =========""");
-            case 4 -> System.out.println("""
+            case 4 -> out.println("""
             +---+
             |   |
             O   |
@@ -102,7 +105,7 @@ public class GameState {
                 |
                 |
             =========""");
-            case 5 -> System.out.println("""
+            case 5 -> out.println("""
             +---+
             |   |
             O   |
@@ -110,7 +113,7 @@ public class GameState {
            /    |
                 |
             =========""");
-            case 6 -> System.out.println("""
+            case 6 -> out.println("""
             +---+
             |   |
             O   |
@@ -122,7 +125,7 @@ public class GameState {
     }
 
     public void printWordState() {
-        System.out.println("Слово: " + String.valueOf(guessedWord));
+        out.println("Слово: " + String.valueOf(guessedWord));
     }
 
     public int getAttemptsLeft() {
@@ -143,10 +146,10 @@ public class GameState {
 
     public void printResult() {
         if (isWordGuessed()) {
-            System.out.println("Поздравляем! Вы угадали слово: " + chosenWord);
+            out.println("Поздравляем! Вы угадали слово: " + chosenWord);
         } else {
             printHangman();
-            System.out.println("Вы проиграли! Загаданное слово было: " + chosenWord);
+            out.println("Вы проиграли! Загаданное слово было: " + chosenWord);
         }
     }
 }

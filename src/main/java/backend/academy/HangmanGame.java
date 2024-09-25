@@ -1,21 +1,24 @@
 package backend.academy;
 
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class HangmanGame {
     private final WordManager wordManager;
     private final Difficulty difficulty;
     private GameState gameState;
+    private final PrintStream out;
 
     public HangmanGame(String filePath) {
-        wordManager = new WordManager(filePath);
+        this.wordManager = new WordManager(filePath);
+        this.out = System.out;
         Scanner scanner = new Scanner(System.in);
-        difficulty = new Difficulty(scanner);
+        this.difficulty = new Difficulty(scanner);
         String chosenCategory = wordManager.chooseCategory(scanner);
-        System.out.println("Категория: " + chosenCategory);
+        out.println("Категория: " + chosenCategory);
         String chosenWord = wordManager.chooseWordFromCategory(chosenCategory);
         if (chosenWord != null) {
-            gameState = new GameState(chosenWord, difficulty.getMaxAttempts());
+            this.gameState = new GameState(chosenWord, difficulty.getMaxAttempts());
         }
     }
 
@@ -28,13 +31,13 @@ public class HangmanGame {
         while (!gameState.isGameOver()) {
             gameState.printHangman();
             gameState.printWordState();
-            System.out.println("Угадайте букву:");
-            System.out.println("Оставшиеся попытки: " + gameState.getAttemptsLeft());
-            System.out.println("Использованные буквы: " + gameState.getGuessedLetters());
+            out.println("Угадайте букву:");
+            out.println("Оставшиеся попытки: " + gameState.getAttemptsLeft());
+            out.println("Использованные буквы: " + gameState.getGuessedLetters());
 
             String input = scanner.nextLine().toLowerCase();
             if (input.length() != 1 || !Character.isLetter(input.charAt(0))) {
-                System.out.println("Пожалуйста, введите одну букву.");
+                out.println("Пожалуйста, введите одну букву.");
                 continue;
             }
 
