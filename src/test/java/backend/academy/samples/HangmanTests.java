@@ -3,17 +3,21 @@ package backend.academy.samples;
 import backend.academy.GameState;
 import backend.academy.WordManager;
 import org.junit.jupiter.api.Test;
+import java.io.InputStream;
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.Set;
 
 public class HangmanTests {
     @Test
     public void testChooseWordFromCategory() {
-        WordManager wordManager = new WordManager("src/main/resources/input.txt");
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("input.txt");
+        assertNotNull(inputStream, "Файл input.txt не найден");
+
+        WordManager wordManager = new WordManager(inputStream);
         String category = "Animals";
         String word = wordManager.chooseWordFromCategory(category);
-        assertNotNull(word);
-        assertTrue(word.length() > 0);
+
+        assertNotNull(word, "Слово не должно быть null");
+        assertTrue(word.length() > 0, "Длина слова должна быть больше 0");
     }
     @Test
     public void testPrintWordState() {

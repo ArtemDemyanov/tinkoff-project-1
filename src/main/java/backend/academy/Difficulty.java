@@ -13,8 +13,8 @@ public class Difficulty {
     private static final int RANDOM_LEVELS = 3;
     private static final String ATTEMPTS_SUFFIX = " попыток)";
 
-    public Difficulty(Scanner scanner) {
-        this.out = System.out;
+    public Difficulty(Scanner scanner, PrintStream out) {
+        this.out = out;
         chooseDifficulty(scanner);
     }
 
