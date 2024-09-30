@@ -1,14 +1,17 @@
 package backend.academy;
 
-import lombok.experimental.UtilityClass;
 import java.io.InputStream;
+import java.io.PrintStream;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class Main {
+    private final PrintStream out = System.out;
+
     public static void main(String[] args) {
         InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("input.txt");
         if (inputStream == null) {
-            System.out.println("Файл input.txt не найден");
+            out.println("Файл input.txt не найден");
             return;
         }
 
