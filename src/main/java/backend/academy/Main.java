@@ -1,7 +1,7 @@
 package backend.academy;
 
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
 import lombok.experimental.UtilityClass;
 
